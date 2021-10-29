@@ -1,0 +1,9 @@
+.card{
+    -webkit-box-shadow: 1px 1px 9px 1px #000000; 
+    box-shadow: 1px 1px 4px 1px #000000;
+}
+
+.icon{
+    font-size: 35px;
+    color: green;
+}
