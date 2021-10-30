@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,5 +14,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+
         <?php include "db.php"; ?>
         <?php include "./functions.php";?>

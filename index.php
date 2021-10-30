@@ -1,12 +1,16 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 <?php include "includes/sidenav.php"; ?>
+
+
+
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <!-- includes/navigation.php has the logic for obtaining user information, as well as redirecting if no user in session -->
+                            <li class="breadcrumb-item active"><?php echo "{$user_firstname} {$user_lastname}" ?></li>
                         </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
