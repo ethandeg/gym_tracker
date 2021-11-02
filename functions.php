@@ -6,9 +6,9 @@
             die("Query Failed..." . mysqli_error($connection));
         }
     }
-    function get_num_workouts(){
+    function get_num_workouts($user_id){
        global $connection;
-       $query = "SELECT COUNT(*) AS total_workouts FROM workouts";
+       $query = "SELECT COUNT(*) AS total_workouts FROM workouts WHERE workout_user_id = {$user_id}";
        $result = mysqli_query($connection, $query);
        confirm_connection($result);
        $row = mysqli_fetch_assoc($result);
@@ -17,15 +17,16 @@
 
     function insert_workout($assoc){
         global $connection;
-        $workout_muscle_group = $assoc['workout_muscle_group'];
-        $workout_gym = $assoc['workout_gym'];
-        $workout_length = $assoc['workout_length'];
-        $workout_date = $assoc['workout_date'];
-
-        $query = "INSERT INTO workouts (workout_muscle_group, workout_gym, workout_length, workout_date)
-                  VALUES ('{$workout_muscle_group}', '{$workout_gym}', '{$workout_length}', '{$workout_date}')";
+        $workout_muscle_group = mysqli_real_escape_string($connection, $assoc['workout_muscle_group']);
+        $workout_gym = mysqli_real_escape_string($connection, $assoc['workout_gym']);
+        $workout_length = mysqli_real_escape_string($connection, $assoc['workout_length']);
+        $workout_date = mysqli_real_escape_string($connection, $assoc['workout_date']);
+        $workout_user_id = mysqli_real_escape_string($connection, $assoc['workout_user_id']);
+        $query = "INSERT INTO workouts (workout_muscle_group, workout_gym, workout_length, workout_date, workout_user_id)
+                  VALUES ('{$workout_muscle_group}', '{$workout_gym}', '{$workout_length}', '{$workout_date}', {$workout_user_id})";
         $result = mysqli_query($connection, $query);
         confirm_connection($result);
+
     }
 
     function create_user($assoc){
@@ -58,6 +59,20 @@
         return mysqli_fetch_assoc($result);
     }
 
+    function get_workout_length_report($interval, $user_id){
+        global $connection;
+        $query = "SELECT SUM(workout_length) AS total_minutes, workout_date 
+                  FROM workouts 
+                  WHERE workout_date > now() - INTERVAL {$interval} DAY 
+                  AND workout_user_id = {$user_id} 
+                  GROUP BY workout_date 
+                  ORDER BY workout_date 
+                  DESC
+                ";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+        return $result;
+    }
 
     // function authenticate()
 ?>

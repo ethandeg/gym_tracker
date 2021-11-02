@@ -6,6 +6,13 @@
 
             <div id="layoutSidenav_content">
                 <main>
+                    <?php 
+                        $results = get_workout_length_report(7, $_SESSION['user_id']);
+                        $workoutLengthByDate = [];
+                        while($row = mysqli_fetch_assoc($results)){
+                            array_push($workoutLengthByDate, $row);
+                        }
+                    ?>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
@@ -15,7 +22,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <?php $workouts = get_num_workouts(); ?>
+                                    <?php $workouts = get_num_workouts($_SESSION['user_id']); ?>
                                     <div class="card-body"><?php echo $workouts; ?> Total Workouts</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="add_workout.php">Log Workout</a>
@@ -561,4 +568,7 @@
                         </div>
                     </div>
                 </main>
+                <script type="text/javascript">
+                    const workoutLengthByDate = <?php echo json_encode($workoutLengthByDate) ?>;
+                </script>       
 <?php include "includes/footer.php"; ?>

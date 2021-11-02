@@ -1,13 +1,37 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
-
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
+console.log(workoutLengthByDate)
+let date = new Date();
+let month = date.getMonth()+1;
+let day = date.getDate();
+let output = date.getFullYear() + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day;
+const dates = [{date: date.toDateString().substring(4,11), dateString: output}];
+for(let i = 0; i < 6; i++){
+  date.setDate(date.getDate() -1)
+  month = date.getMonth() + 1;
+  day = date.getDate();
+  output = date.getFullYear() + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day;
+
+  dates.push({date: date.toDateString().substring(4,11), dateString: output});
+}
+const workoutDates = workoutLengthByDate.map(date => date.workout_date);
+dates.forEach(d => {
+  if(!workoutDates.includes(d.dateString)){
+  workoutLengthByDate.push({total_minutes: 0, workout_date: d.dateString})
+}
+})
+dates.reverse();
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+    labels: dates.map(date => date.date),
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,
@@ -20,7 +44,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+      data: [10, 25, 100, 32, 11, 200, 25],
     }],
   },
   options: {
@@ -39,7 +63,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 40000,
+          max: 200,
           maxTicksLimit: 5
         },
         gridLines: {
