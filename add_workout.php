@@ -10,16 +10,8 @@
                 } 
                 ?>
                     <div class="container-fluid px-4">
-                    <h1 class="mt-4">Add Workout</h1>
-                    <?php 
-                        $month = date('m');
-                        $day = date('d');
-                        $year = date('Y');
-
-                        $today = $year . '-' . $month . '-' . $day;
-                    ?>               
-                        
-
+                    <h1 class="mt-4">Add Workout</h1>   
+            
                     <form class = "px-5 pt-5" action="" method="post">
                         <div class="mb-3">
                             <label for="muscle_group" class="form-label">Muscle Group</label>
@@ -46,4 +38,5 @@
                     </div>
                 </main>
 <?php include "includes/footer.php"; ?>
+<script src="scripts/add_workout.js"></script>
 

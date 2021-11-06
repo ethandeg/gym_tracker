@@ -3,7 +3,6 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
-console.log(workoutLengthByDate)
 let date = new Date();
 let month = date.getMonth()+1;
 let day = date.getDate();
@@ -28,6 +27,8 @@ dates.forEach(d => {
 }
 })
 dates.reverse();
+workoutLengthByDate.sort((a, b) => (a.workout_date > b.workout_date) ? 1 : -1);
+let totalMinutesEachDay = workoutLengthByDate.map(num => Number(num.total_minutes));
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -44,7 +45,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [10, 25, 100, 32, 11, 200, 25],
+      data: workoutLengthByDate.map(num => Number(num.total_minutes)),
     }],
   },
   options: {
@@ -63,7 +64,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 200,
+          max: Math.max(...totalMinutesEachDay),
           maxTicksLimit: 5
         },
         gridLines: {

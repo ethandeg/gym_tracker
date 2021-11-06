@@ -74,5 +74,22 @@
         return $result;
     }
 
+    function grabAllWorkoutsByUser($user_id){
+        global $connection;
+        $query = "SELECT * FROM workouts WHERE workout_user_id = {$user_id}";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+        return $result;
+    }
+
+    function getNumMealsByUserAndDate($user_id, $date){
+        global $connection;
+        $query = "SELECT COUNT(*) AS totalMeals FROM meals WHERE meal_user_id = {$user_id} AND DATE(meal_datetime) = '{$date}'";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+        $row = mysqli_fetch_assoc($result);
+        return $row['totalMeals'];
+    }
+
     // function authenticate()
 ?>

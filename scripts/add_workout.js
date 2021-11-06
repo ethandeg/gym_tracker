@@ -4,7 +4,5 @@ Date.prototype.toDateInputValue = (function() {
     return local.toJSON().slice(0,10);
 });
 
-$(document).ready( function() {
-    alert("connected")
-    $('#workout_date').val(new Date().toDateInputValue());
-});​
+let date = getTodaysDate()
+$("#workout_date").val(date)
