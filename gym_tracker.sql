@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2021 at 05:40 AM
+-- Generation Time: Nov 06, 2021 at 06:04 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `gym_tracker`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meals`
+--
+
+CREATE TABLE `meals` (
+  `meal_id` int(11) NOT NULL,
+  `meal_user_id` int(11) NOT NULL,
+  `meal_name` varchar(50) NOT NULL,
+  `meal_ingredients` varchar(255) NOT NULL,
+  `meal_calories` int(11) NOT NULL,
+  `meal_datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `meals`
+--
+
+INSERT INTO `meals` (`meal_id`, `meal_user_id`, `meal_name`, `meal_ingredients`, `meal_calories`, `meal_datetime`) VALUES
+(1, 1, 'Chicken', 'Chicken, rice, lemon drops', 1200, '2021-11-05 23:15:37'),
+(2, 2, 'Ice cream', 'Strawberry Icecream', 2000, '2021-11-05 23:15:37');
 
 -- --------------------------------------------------------
 
@@ -83,6 +106,13 @@ INSERT INTO `workouts` (`workout_id`, `workout_date`, `workout_length`, `workout
 --
 
 --
+-- Indexes for table `meals`
+--
+ALTER TABLE `meals`
+  ADD PRIMARY KEY (`meal_id`),
+  ADD KEY `user_id` (`meal_user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -101,6 +131,12 @@ ALTER TABLE `workouts`
 --
 
 --
+-- AUTO_INCREMENT for table `meals`
+--
+ALTER TABLE `meals`
+  MODIFY `meal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -115,6 +151,12 @@ ALTER TABLE `workouts`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `meals`
+--
+ALTER TABLE `meals`
+  ADD CONSTRAINT `meals_ibfk_1` FOREIGN KEY (`meal_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `workouts`
