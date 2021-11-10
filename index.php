@@ -1,23 +1,25 @@
-<?php include "includes/header.php"; ?>
-<?php include "includes/navigation.php"; ?>
-<?php include "includes/sidenav.php"; ?>
+<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/header.php"; ?>
+<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/navigation.php"; 
+//We grab user variables here, as well as authorization if user is logged in
+?>
+<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/sidenav.php"; 
+?>
 
 
 
             <div id="layoutSidenav_content">
                 <main>
                     <?php 
-                        $results = get_workout_length_report(7, $_SESSION['user_id']);
+                        $results = get_workout_length_report(7, $user_id);
                         $workoutLengthByDate = [];
                         while($row = mysqli_fetch_assoc($results)){
                             array_push($workoutLengthByDate, $row);
                         }
-                        $results = getMealCalorieReport(7, $_SESSION['user_id']);
+                        $results = getMealCalorieReport(7, $user_id);
                         $mealCaloriesByDate = [];
                         while($row = mysqli_fetch_assoc($results)){
                             array_push($mealCaloriesByDate, $row);
                         }
-                        print_r($mealCaloriesByDate);
                     ?>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -28,7 +30,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <?php $workouts = get_num_workouts($_SESSION['user_id']);?>
+                                    <?php $workouts = get_num_workouts($user_id);?>
                                     <div class="card-body"><?php echo $workouts; ?> Total Workouts</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="add_workout.php">Log Workout</a>
@@ -38,7 +40,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <?php $meals = getNumMealsByUserAndDate($_SESSION['user_id'], $_COOKIE['formattedDate']); ?>
+                                    <?php $meals = getNumMealsByUserAndDate($user_id, $_COOKIE['formattedDate']); ?>
                                     <div class="card-body"><?php echo $meals; ?> Meals Today</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="add_meal.php">Log a meal</a>
@@ -48,18 +50,18 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
+                                    <div class="card-body">Current Weight: <?php echo (!empty($user_weight)) ? $user_weight : 'Not configured'; ?></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="add_weighin.php">Log Weigh In</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-body">Goal Weight: <?php echo (!empty($user_goal_weight)) ? $user_goal_weight : 'Not configured'; ?></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="edit_profile.php">Change Goal</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -130,5 +132,9 @@
                     const mealCaloriesByDate = <?php echo json_encode($mealCaloriesByDate); ?>;
                 </script>       
 <?php include "includes/footer.php"; ?>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
+<script>
+    <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/assets/demo/chart-area-demo.js"); ?>
+</script>
+<script>
+    <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/assets/demo/chart-bar-demo.js"); ?>
+</script>

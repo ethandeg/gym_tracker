@@ -40,7 +40,19 @@
                   VALUES ({$meal_user_id}, '{$meal_name}', '{$meal_ingredients}', {$meal_calories}, '{$meal_datetime}')";
         $result = mysqli_query($connection, $query);
         confirm_connection($result);
-        echo "<h3>$query</h3>";
+    }
+
+    function logWeighin($assoc){
+        global $connection;
+        $weighin_weight = mysqli_real_escape_string($connection, $assoc['weighin_weight']);
+        $weighin_user_id = mysqli_real_escape_string($connection, $assoc['weighin_user_id']);
+        $weighin_date = mysqli_real_escape_string($connection, $assoc['weighin_date']);
+        $query = "INSERT INTO weighins 
+        (weighin_user_id, weighin_weight, weighin_date) 
+        VALUES 
+        ({$weighin_user_id}, {$weighin_weight}, '{$weighin_date}')";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
     }
 
     function create_user($assoc){
@@ -57,6 +69,37 @@
                       ('{$username}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$password}')";
             $result = mysqli_query($connection, $query);
             confirm_connection($result);
+    }
+
+    function updateColumn($tableName, $colsAndVals){
+        //either input an associated array or nested arrays
+        //better to use nested arrays, so a final index could indicate type of data
+        global $connection;
+        $keys = array_keys($colsAndVals);
+        $statement = '';
+        for($i = 0; $i < count($keys); $i++){
+            // $statement .= $keys[$i] . " = " . (gettype($colsAndVals[$keys[$i]]) === 'string') ?  '\'' . $colsAndVals[$keys[$i]] . '\'' :  $colsAndVals[$keys[$i]];
+            if(gettype($colsAndVals[$keys[$i]]) === 'string'){
+                $statement .= $keys[$i] . " = " . '\'' . $colsAndVals[$keys[$i]] . '\'';
+            } else {
+                $statement .= $keys[$i] . " = " . $colsAndVals[$keys[$i]];
+            }
+            if($i != count($keys) - 1){
+                $statement .= ', ';
+            } else {
+                $statement .= ' ';
+            }
+        }
+        $query = "UPDATE {$tableName} 
+                  SET {$statement}";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+        // $statement = '';
+        // for($i = 0; $i < count($colsAndVals); $i++){
+        //     $statement .= $colsAndVals[0] . ' = ' . ($colsAndVals[2] === 'string') ? '\'' . $colsAndVals[1] . '\'' : $colsAndVals[1];
+        //     ($i != count($colsAndVals) - 1) ? $statement .= ', ' : $statement .= ' ';
+        // }
+        // echo $statement;
     }
 
     function find_user($search_by, $val){

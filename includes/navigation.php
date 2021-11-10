@@ -1,10 +1,14 @@
 <?php if(!$_SESSION['user_id']){
-        header("Location: register.php");
+        header("Location: /register.php");
     } else {
         $user_id = $_SESSION['user_id'];
         $user = find_user('user_id', $user_id);
         $user_firstname = $user['user_firstname'];
         $user_lastname = $user['user_lastname'];
+        $user_weight = $user['user_weight'];
+        $username = $user['username'];
+        $user_email = $user['user_email'];
+        $user_goal_weight = $user['user_goal_weight'];
     } 
     ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -24,7 +28,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="edit_profile.php">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="includes/logout.php">Logout</a></li>
