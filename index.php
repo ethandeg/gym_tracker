@@ -12,6 +12,12 @@
                         while($row = mysqli_fetch_assoc($results)){
                             array_push($workoutLengthByDate, $row);
                         }
+                        $results = getMealCalorieReport(7, $_SESSION['user_id']);
+                        $mealCaloriesByDate = [];
+                        while($row = mysqli_fetch_assoc($results)){
+                            array_push($mealCaloriesByDate, $row);
+                        }
+                        print_r($mealCaloriesByDate);
                     ?>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -33,9 +39,9 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
                                     <?php $meals = getNumMealsByUserAndDate($_SESSION['user_id'], $_COOKIE['formattedDate']); ?>
-                                    <div class="card-body"><?php echo $meals; ?> Meals</div>
+                                    <div class="card-body"><?php echo $meals; ?> Meals Today</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="add_meal.php">Log a meal</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -121,6 +127,7 @@
                 </main>
                 <script type="text/javascript">
                     const workoutLengthByDate = <?php echo json_encode($workoutLengthByDate) ?>;
+                    const mealCaloriesByDate = <?php echo json_encode($mealCaloriesByDate); ?>;
                 </script>       
 <?php include "includes/footer.php"; ?>
 <script src="assets/demo/chart-area-demo.js"></script>

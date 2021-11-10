@@ -5,4 +5,9 @@ Date.prototype.toDateInputValue = (function() {
 });
 
 let date = getTodaysDate()
-$("#workout_date").val(date)
+if($("#workout_date")){
+    $("#workout_date").val(date);
+}
+if($("#meal_date")){
+    $("#meal_date").val(date);
+}

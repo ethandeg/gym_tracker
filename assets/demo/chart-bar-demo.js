@@ -4,15 +4,23 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
+const mealDates = mealCaloriesByDate.map(date => date.meal_date);
+dates.forEach(d => {
+  if(!mealDates.includes(d.dateString)){
+  mealCaloriesByDate.push({total_calories: 0, meal_date: d.dateString})
+}
+})
+mealCaloriesByDate.sort((a, b) => (a.meal_date > b.meal_date) ? 1 : -1);
+let totalCaloriesEachDay = mealCaloriesByDate.map(num => Number(num.total_calories));
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: dates.map(date => date.date),
     datasets: [{
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: totalCaloriesEachDay,
     }],
   },
   options: {
@@ -25,14 +33,14 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 8
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
-          maxTicksLimit: 5
+          max: Math.max(...totalCaloriesEachDay) === 0 ? 5 : Math.max(...totalCaloriesEachDay),
+          maxTicksLimit: 10
         },
         gridLines: {
           display: true

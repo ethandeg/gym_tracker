@@ -10,9 +10,9 @@
                 } 
                 ?>
                     <div class="container-fluid px-4">
-                    <h1 class="mt-4">Add Workout</h1>   
+                    <h1 class="mt-4 text-center">Add Workout</h1>   
             
-                    <form class = "px-5 pt-5" action="" method="post">
+                    <form class = "px-5 py-5" action="" method="post">
                         <div class="mb-3">
                             <label for="muscle_group" class="form-label">Muscle Group</label>
                             <input type="text" class="form-control" id="workout_muscle_group" name="workout_muscle_group">

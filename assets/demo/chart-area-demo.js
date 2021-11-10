@@ -64,7 +64,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: Math.max(...totalMinutesEachDay),
+          max: Math.max(...totalMinutesEachDay) === 0 ? 5 : Math.max(...totalMinutesEachDay),
           maxTicksLimit: 5
         },
         gridLines: {
