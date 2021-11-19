@@ -71,12 +71,18 @@
             confirm_connection($result);
     }
 
-    function updateColumn($tableName, $colsAndVals){
+    function updateColumn($tableName, $colsAndVals, $key, $val){
         //either input an associated array or nested arrays
         //better to use nested arrays, so a final index could indicate type of data
         global $connection;
         $keys = array_keys($colsAndVals);
         $statement = '';
+        if(gettype($val) === 'string'){
+            $keyEqualsValue = "{$key} = '{$val}'";
+        } else {
+            $keyEqualsValue = "{$key} = {$val}";
+        }
+       
         for($i = 0; $i < count($keys); $i++){
             // $statement .= $keys[$i] . " = " . (gettype($colsAndVals[$keys[$i]]) === 'string') ?  '\'' . $colsAndVals[$keys[$i]] . '\'' :  $colsAndVals[$keys[$i]];
             if(gettype($colsAndVals[$keys[$i]]) === 'string'){
@@ -91,9 +97,11 @@
             }
         }
         $query = "UPDATE {$tableName} 
-                  SET {$statement}";
+                  SET {$statement}
+                  WHERE {$keyEqualsValue}";
         $result = mysqli_query($connection, $query);
         confirm_connection($result);
+        // return $query;
         // $statement = '';
         // for($i = 0; $i < count($colsAndVals); $i++){
         //     $statement .= $colsAndVals[0] . ' = ' . ($colsAndVals[2] === 'string') ? '\'' . $colsAndVals[1] . '\'' : $colsAndVals[1];

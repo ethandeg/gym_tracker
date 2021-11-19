@@ -11,9 +11,13 @@
                         $_POST['user_firstname'] = mysqli_real_escape_string($connection, $_POST['user_firstname']);
                         $_POST['user_lastname'] = mysqli_real_escape_string($connection, $_POST['user_lastname']);
                         $_POST['password'] = mysqli_real_escape_string($connection, $_POST['password']);
+                        $_POST['user_gender'] = mysqli_real_escape_string($connection, $_POST['user_gender']);
+                        $_POST['user_dob'] = mysqli_real_escape_string($connection, $_POST['user_dob']);
+                        $_POST['user_goal_weight'] = (int)$_POST['user_goal_weight'];
                         // $_POST['user_email'] = mysqli_real_escape_string($connection, $_POST['user_email']);
-                        updateColumn('users', $_POST);
+                        updateColumn('users', $_POST, 'user_id', (int)$user_id);
                         header("Location: edit_profile.php");
+                        // print_r($_POST);
                     }
                     ?>
                     <div class="container-fluid px-4">
@@ -38,6 +42,28 @@
                             <input type="text" class="form-control" id="user_lastname" name="user_lastname" value="<?php echo $user_lastname; ?>">
                         </div>
                         <div class="mb-3">
+                            <label for="user_dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="user_dob" name="user_dob" value="<?php echo $user_dob; ?>">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="user_gender" class="form-label">Gender</label>
+                            <select name="user_gender" id="user_gender" value="">
+                                <option value="<?php echo ($user_gender) ? $user_gender : ''; ?>"><?php echo ($user_gender) ? $user_gender : 'Select an Option'; ?></option>
+                                <?php if($user_gender && $user_gender === "Male"){
+                                    echo "<option value='Female'>Female</option>";
+                                } elseif($user_gender && $user_gender === "Female"){
+                                    echo "<option value='Male'>Male</option>";
+                                } elseif (!$user_gender || empty($user_gender)){
+                                    echo "<option value='Male'>Male</option>";
+                                    echo "<option value='Female'>Female</option>";
+                                }
+                                ?>
+                                
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
                             <label for="user_email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="user_email" name="user_email" value="<?php echo $user_email; ?>" disabled>
                         </div>
@@ -48,6 +74,10 @@
                         <div class="mb-3">
                             <label for="user_goal_weight" class="form-label">Goal Weight</label>
                             <input type="number" class="form-control" id="user_goal_weight" name="user_goal_weight" value="<?php echo $user_goal_weight; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="user_date_created" class="form-label">Member Since</label>
+                            <input type="text" class="form-control" id="user_date_created" name="user_date_created" value="<?php echo substr($user_date_created, 0, 10); ?>" disabled>
                         </div>
                         <!-- <div class="mb-3 form-check">
                         <label for="workout_date">Workout Date</label>

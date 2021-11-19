@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2021 at 06:56 AM
+-- Generation Time: Nov 19, 2021 at 01:19 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,21 +59,24 @@ CREATE TABLE `users` (
   `user_lastname` varchar(25) NOT NULL,
   `user_weight` float DEFAULT NULL,
   `user_email` varchar(50) NOT NULL,
-  `user_goal_weight` int(11) NOT NULL
+  `user_goal_weight` int(11) NOT NULL,
+  `user_gender` varchar(10) DEFAULT NULL,
+  `user_dob` date DEFAULT NULL,
+  `user_date_created` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `user_firstname`, `user_lastname`, `user_weight`, `user_email`, `user_goal_weight`) VALUES
-(1, 'admin', 'admin', 'Ethan', 'Degenhardt', 225, 'admin1@gmail.com', 196),
-(2, 'user', 'admin', 'Ethan', 'Degenhardt', 225, 'user@gmail.com', 196),
-(3, 'john_wick', 'admin', 'Ethan', 'Degenhardt', 225, 'john@gmail.com', 196),
-(4, 'bravo', 'admin', 'Ethan', 'Degenhardt', 225, 'bro@gmail.com', 196),
-(5, 'garyneelz', 'admin', 'Ethan', 'Degenhardt', 225, 'gary@gmail.com', 196),
-(10, 'test', 'admin', 'Ethan', 'Degenhardt', 225, 'test@gmail.com', 196),
-(11, 'blargh', 'admin', 'Ethan', 'Degenhardt', 225, 'blargh@gmail.com', 196);
+INSERT INTO `users` (`user_id`, `username`, `password`, `user_firstname`, `user_lastname`, `user_weight`, `user_email`, `user_goal_weight`, `user_gender`, `user_dob`, `user_date_created`) VALUES
+(1, 'admin', 'admin', 'Ethan', 'Degenhardt', 231, 'admin1@gmail.com', 200, 'Male', '1996-03-08', '2021-10-24'),
+(2, 'user', 'user', 'ellie', 'eler', 225, 'user@gmail.com', 196, 'Female', '1996-03-08', '2021-10-24'),
+(3, 'john_wick', 'admin', 'Ethan', 'Degenhardt', 225, 'john@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
+(4, 'bravo', 'admin', 'Ethan', 'Degenhardt', 225, 'bro@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
+(5, 'garyneelz', 'admin', 'Ethan', 'Degenhardt', 225, 'gary@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
+(10, 'test', 'admin', 'Ethan', 'Degenhardt', 225, 'test@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
+(11, 'blargh', 'admin', 'Ethan', 'Degenhardt', 225, 'blargh@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,10 @@ CREATE TABLE `weighins` (
 
 INSERT INTO `weighins` (`weighin_id`, `weighin_user_id`, `weighin_weight`, `weighin_date`) VALUES
 (1, 1, 199, '2021-11-09'),
-(2, 1, 225, '2021-11-09');
+(2, 1, 225, '2021-11-09'),
+(3, 1, 228, '2021-11-10'),
+(4, 1, 228, '2021-11-10'),
+(5, 1, 231, '2021-11-10');
 
 -- --------------------------------------------------------
 
@@ -177,7 +183,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `weighins`
 --
 ALTER TABLE `weighins`
-  MODIFY `weighin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `weighin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `workouts`
