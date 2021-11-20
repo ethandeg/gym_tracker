@@ -171,5 +171,37 @@
         return $row['totalMeals'];
     }
 
+    function insertWeightGoal($user_id, $goal_assoc){
+        global $connection;
+        $weight_goal_name = $goal_assoc['weight_goal_name'];
+        $weight_goal_start = $goal_assoc['weight_goal_start'];
+        $weight_goal_end = $goal_assoc['weight_goal_end'];
+        $weight_goal_change = $goal_assoc['weight_goal_change'];
+        $query = "INSERT INTO weight_goals (weight_goal_name, weight_goal_start, weight_goal_end, weight_goal_change, weight_goal_user_id)
+                  VALUES ('{$weight_goal_name}', '{$weight_goal_start}', '{$weight_goal_end}', {$weight_goal_change}, {$user_id})";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+    }
+
+    function getAllPlans($user_id){
+        global $connection;
+        $query = "SELECT * FROM weight_goals WHERE weight_goal_user_id = {$user_id}";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($result);
+        return $result;
+    }
+
+    function getPlanAndUserData($plan_id){
+        global $connection;
+        $query = "SELECT user_weight, user_gender, user_dob, weight_goal_change, weight_goal_start, weight_goal_end, weight_goal_name 
+                  FROM weight_goals 
+                  JOIN users 
+                  ON weight_goals.weight_goal_user_id = users.user_id 
+                  WHERE weight_goal_id = {$plan_id};";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($connection);
+        return $result;
+    }
+
     // function authenticate()
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2021 at 01:19 AM
+-- Generation Time: Nov 20, 2021 at 04:42 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -105,6 +105,28 @@ INSERT INTO `weighins` (`weighin_id`, `weighin_user_id`, `weighin_weight`, `weig
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `weight_goals`
+--
+
+CREATE TABLE `weight_goals` (
+  `weight_goal_id` int(11) NOT NULL,
+  `weight_goal_name` varchar(50) NOT NULL,
+  `weight_goal_start` date NOT NULL,
+  `weight_goal_end` date NOT NULL,
+  `weight_goal_change` float NOT NULL,
+  `weight_goal_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `weight_goals`
+--
+
+INSERT INTO `weight_goals` (`weight_goal_id`, `weight_goal_name`, `weight_goal_start`, `weight_goal_end`, `weight_goal_change`, `weight_goal_user_id`) VALUES
+(1, 'lose some weight', '2021-11-19', '2021-11-30', -10, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `workouts`
 --
 
@@ -157,6 +179,13 @@ ALTER TABLE `weighins`
   ADD KEY `weighin_user_id` (`weighin_user_id`);
 
 --
+-- Indexes for table `weight_goals`
+--
+ALTER TABLE `weight_goals`
+  ADD PRIMARY KEY (`weight_goal_id`),
+  ADD KEY `weight_goal_user_id` (`weight_goal_user_id`);
+
+--
 -- Indexes for table `workouts`
 --
 ALTER TABLE `workouts`
@@ -186,6 +215,12 @@ ALTER TABLE `weighins`
   MODIFY `weighin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `weight_goals`
+--
+ALTER TABLE `weight_goals`
+  MODIFY `weight_goal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `workouts`
 --
 ALTER TABLE `workouts`
@@ -206,6 +241,12 @@ ALTER TABLE `meals`
 --
 ALTER TABLE `weighins`
   ADD CONSTRAINT `weighins_ibfk_1` FOREIGN KEY (`weighin_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `weight_goals`
+--
+ALTER TABLE `weight_goals`
+  ADD CONSTRAINT `weight_goals_ibfk_1` FOREIGN KEY (`weight_goal_user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `workouts`

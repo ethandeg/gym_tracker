@@ -14,3 +14,8 @@ if ($("#meal_date")) {
 if ($("#weighin_date")) {
     $("#weighin_date").val(date);
 }
+if ($("#weight_goal_start")) {
+    $("#weight_goal_start").val(date);
+}
+
+
