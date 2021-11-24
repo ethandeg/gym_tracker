@@ -76,6 +76,10 @@
                             <input type="number" class="form-control" id="user_goal_weight" name="user_goal_weight" value="<?php echo $user_goal_weight; ?>">
                         </div>
                         <div class="mb-3">
+                            <label for="user_height" class="form-label">Height in Inches</label>
+                            <input type="number" class="form-control" id="user_height" name="user_height" value="<?php echo $user_height; ?>">
+                        </div>
+                        <div class="mb-3">
                             <label for="user_date_created" class="form-label">Member Since</label>
                             <input type="text" class="form-control" id="user_date_created" name="user_date_created" value="<?php echo substr($user_date_created, 0, 10); ?>" disabled>
                         </div>

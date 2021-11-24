@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 04:42 AM
+-- Generation Time: Nov 24, 2021 at 05:22 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -62,21 +62,22 @@ CREATE TABLE `users` (
   `user_goal_weight` int(11) NOT NULL,
   `user_gender` varchar(10) DEFAULT NULL,
   `user_dob` date DEFAULT NULL,
-  `user_date_created` date NOT NULL DEFAULT current_timestamp()
+  `user_date_created` date NOT NULL DEFAULT current_timestamp(),
+  `user_height` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `user_firstname`, `user_lastname`, `user_weight`, `user_email`, `user_goal_weight`, `user_gender`, `user_dob`, `user_date_created`) VALUES
-(1, 'admin', 'admin', 'Ethan', 'Degenhardt', 231, 'admin1@gmail.com', 200, 'Male', '1996-03-08', '2021-10-24'),
-(2, 'user', 'user', 'ellie', 'eler', 225, 'user@gmail.com', 196, 'Female', '1996-03-08', '2021-10-24'),
-(3, 'john_wick', 'admin', 'Ethan', 'Degenhardt', 225, 'john@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
-(4, 'bravo', 'admin', 'Ethan', 'Degenhardt', 225, 'bro@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
-(5, 'garyneelz', 'admin', 'Ethan', 'Degenhardt', 225, 'gary@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
-(10, 'test', 'admin', 'Ethan', 'Degenhardt', 225, 'test@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24'),
-(11, 'blargh', 'admin', 'Ethan', 'Degenhardt', 225, 'blargh@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24');
+INSERT INTO `users` (`user_id`, `username`, `password`, `user_firstname`, `user_lastname`, `user_weight`, `user_email`, `user_goal_weight`, `user_gender`, `user_dob`, `user_date_created`, `user_height`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 231, 'admin1@gmail.com', 200, 'Male', '1996-03-08', '2021-10-24', 73),
+(2, 'user', '12dea96fec20593566ab75692c9949596833adc9', 'ellie', 'eler', 225, 'user@gmail.com', 196, 'Female', '1996-03-08', '2021-10-24', 0),
+(3, 'john_wick', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 225, 'john@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24', 0),
+(4, 'bravo', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 225, 'bro@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24', 0),
+(5, 'garyneelz', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 225, 'gary@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24', 0),
+(10, 'test', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 225, 'test@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24', 0),
+(11, 'blargh', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ethan', 'Degenhardt', 225, 'blargh@gmail.com', 196, 'Male', '1996-03-08', '2021-10-24', 0);
 
 -- --------------------------------------------------------
 
@@ -114,15 +115,16 @@ CREATE TABLE `weight_goals` (
   `weight_goal_start` date NOT NULL,
   `weight_goal_end` date NOT NULL,
   `weight_goal_change` float NOT NULL,
-  `weight_goal_user_id` int(11) NOT NULL
+  `weight_goal_user_id` int(11) NOT NULL,
+  `weight_goal_daily_calories` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `weight_goals`
 --
 
-INSERT INTO `weight_goals` (`weight_goal_id`, `weight_goal_name`, `weight_goal_start`, `weight_goal_end`, `weight_goal_change`, `weight_goal_user_id`) VALUES
-(1, 'lose some weight', '2021-11-19', '2021-11-30', -10, 1);
+INSERT INTO `weight_goals` (`weight_goal_id`, `weight_goal_name`, `weight_goal_start`, `weight_goal_end`, `weight_goal_change`, `weight_goal_user_id`, `weight_goal_daily_calories`) VALUES
+(1, 'lose some weight', '2021-11-19', '2022-12-31', -10, 1, 3823);
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,7 @@ ALTER TABLE `meals`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `weighins`

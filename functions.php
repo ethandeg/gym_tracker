@@ -66,7 +66,7 @@
             $query = "INSERT INTO users 
                       (username, user_firstname, user_lastname, user_email, password) 
                       VALUES 
-                      ('{$username}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$password}')";
+                      ('{$username}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', SHA('{$password}'))";
             $result = mysqli_query($connection, $query);
             confirm_connection($result);
     }
@@ -193,7 +193,7 @@
 
     function getPlanAndUserData($plan_id){
         global $connection;
-        $query = "SELECT user_weight, user_gender, user_dob, weight_goal_change, weight_goal_start, weight_goal_end, weight_goal_name 
+        $query = "SELECT user_weight, user_gender, user_dob, weight_goal_change, weight_goal_start, weight_goal_end, weight_goal_name, user_height 
                   FROM weight_goals 
                   JOIN users 
                   ON weight_goals.weight_goal_user_id = users.user_id 
@@ -203,5 +203,11 @@
         return $result;
     }
 
-    // function authenticate()
+    function authenticate($username, $password){
+        global $connection;
+        $query = "SELECT * FROM users WHERE username = '{$username}' AND password = SHA('{$password}')";
+        $result = mysqli_query($connection, $query);
+        confirm_connection($connection);
+        return mysqli_fetch_assoc($result);
+    }
 ?>

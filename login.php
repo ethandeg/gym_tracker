@@ -1,21 +1,15 @@
 <?php include "includes/header.php"; ?>
 <?php
 if(isset($_POST['login'])){
-    $user = find_user('username', $_POST['username']);
+    $user = authenticate($_POST['username'], $_POST['password']);
     if($user){
-        $password = $user['password'];
-        if($password === $_POST['password']){
             $_SESSION['user_id'] = $user['user_id'];
             header("Location: index.php");
         } else{
             echo "<h6>Invalid Login Credentials<h6>";
         }
-    } else {
-        echo "<h6>Invalid Login Credentials<h6>";
     }
     
-}
-
 ?>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">

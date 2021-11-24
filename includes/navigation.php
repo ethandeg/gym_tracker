@@ -12,6 +12,7 @@
         $user_dob = $user['user_dob'];
         $user_gender = $user['user_gender'];
         $user_date_created = $user['user_date_created'];
+        $user_height = $user['user_height'];
     } 
     ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -22,8 +23,8 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <!-- <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" /> -->
+                    <!-- <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button> -->
                 </div>
             </form>
             <!-- Navbar-->
@@ -34,7 +35,7 @@
                         <li><a class="dropdown-item" href="/edit_profile.php">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="includes/logout.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="/includes/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
