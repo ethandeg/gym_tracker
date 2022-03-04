@@ -1,5 +1,6 @@
 <?php ob_start(); ?>
 <?php session_start(); ?>
+<?php require_once("includes/config.php");?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,17 +11,13 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="./css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        <script>
-            <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/scripts/helpers.js"); 
-            
-            ?>
-            
-        </script>
+        <script src="./scripts/helpers.js"></script>
         <script>document.cookie = "formattedDate = " + getTodaysDate()</script>
     </head>
     <body class="sb-nav-fixed">
+    <? echo $protocolDomainName; ?>
 
-        <?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/db.php"; ?>
-        <?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/functions.php";?>
+        <?php include "$protocolDomainName/includes/db.php"; ?>
+        <?php include "$protocolDomainName/functions.php";?>

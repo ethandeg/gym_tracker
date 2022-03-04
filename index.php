@@ -1,8 +1,12 @@
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/header.php"; ?>
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/navigation.php"; 
+<?php require_once("includes/config.php");?>
+<?php echo PROJECT_ROOT_PATH;
+?>
+
+<?php include PROJECT_ROOT_PATH . "/includes/header.php"; ?>
+<?php include PROJECT_ROOT_PATH . "/includes/navigation.php"; 
 //We grab user variables here, as well as authorization if user is logged in
 ?>
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/sidenav.php"; 
+<?php include "includes/sidenav.php"; 
 ?>
 
 
@@ -132,9 +136,5 @@
                     const mealCaloriesByDate = <?php echo json_encode($mealCaloriesByDate); ?>;
                 </script>       
 <?php include "includes/footer.php"; ?>
-<script>
-    <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/assets/demo/chart-area-demo.js"); ?>
-</script>
-<script>
-    <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/assets/demo/chart-bar-demo.js"); ?>
-</script>
+<script src="./assets/demo/chart-area-demo.js"></script>
+<script src="./assets/demo/chart-bar-demo.js"></script>

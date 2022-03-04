@@ -1,5 +1,6 @@
 <?php if(!$_SESSION['user_id']){
-        header("Location: /register.php");
+        $home_path = PROJECT_ROOT_PATH;
+        header("location: ./register.php");
     } else {
         $user_id = (int)$_SESSION['user_id'];
         $user = find_user('user_id', $user_id);
@@ -13,7 +14,10 @@
         $user_gender = $user['user_gender'];
         $user_date_created = $user['user_date_created'];
         $user_height = $user['user_height'];
-    } 
+    }
+    // echo "<pre>"; 
+    // print_r($_SERVER);
+    // echo "</pre>"; 
     ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->

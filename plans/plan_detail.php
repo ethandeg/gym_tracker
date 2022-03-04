@@ -1,6 +1,6 @@
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/header.php"; ?>
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/navigation.php"; ?>
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/sidenav.php"; ?>
+<?php include "/includes/header.php"; ?>
+<?php include "/includes/navigation.php"; ?>
+<?php include "/includes/sidenav.php"; ?>
 
             <div id="layoutSidenav_content">
                 <!-- 3,500 Calories lost per pound -->
@@ -120,7 +120,5 @@
                     </div>
                 </main>
                 
-<?php include $_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/includes/footer.php"; ?>
-<script>
-   <?php require_once($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/scripts/add_workout.js"); ?>
-</script>
+<?php include "/includes/footer.php"; ?>
+<script>"/scripts/add_workout.js"</script>
