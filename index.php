@@ -1,3 +1,7 @@
+<?php
+echo "<h1>Hello, world!</h1>"; 
+exit;
+?>
 <?php include "./includes/header.php"; ?>
 <?php include PROJECT_ROOT_PATH . "/includes/navigation.php"; 
 //We grab user variables here, as well as authorization if user is logged in
