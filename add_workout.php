@@ -7,6 +7,7 @@
                 <?php if(isset($_POST['add_workout'])){
                     $_POST['workout_user_id'] = $_SESSION['user_id'];
                     insert_workout($_POST);
+                    header("Location: $link_path/index.php");
                 } 
                 ?>
                     <div class="container-fluid px-4">

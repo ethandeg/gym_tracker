@@ -1,8 +1,4 @@
-<?php require_once("includes/config.php");?>
-<?php echo PROJECT_ROOT_PATH;
-?>
-
-<?php include PROJECT_ROOT_PATH . "/includes/header.php"; ?>
+<?php include "./includes/header.php"; ?>
 <?php include PROJECT_ROOT_PATH . "/includes/navigation.php"; 
 //We grab user variables here, as well as authorization if user is logged in
 ?>
@@ -97,7 +93,7 @@
                                 DataTable Example
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="table">
                                     <thead>
                                         <tr>
                                             <th>Date</th>

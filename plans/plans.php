@@ -1,6 +1,6 @@
-<?php include "/includes/header.php"; ?>
-<?php include "/includes/navigation.php"; ?>
-<?php include "/includes/sidenav.php"; ?>
+<?php include "../includes/header.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/navigation.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/sidenav.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -13,7 +13,7 @@
                                 Plans
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="table">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
@@ -55,5 +55,5 @@
                             </div>
                         </div>
                 </main>
-<?php include "/includes/footer.php"; ?>
-<script>"/scripts/add_workout.js"</script>
+<?php include PROJECT_ROOT_PATH . "./includes/footer.php"; ?>
+<script>"<?php echo $link_path; ?>/scripts/add_workout.js"</script>

@@ -181,6 +181,7 @@
                   VALUES ('{$weight_goal_name}', '{$weight_goal_start}', '{$weight_goal_end}', {$weight_goal_change}, {$user_id})";
         $result = mysqli_query($connection, $query);
         confirm_connection($result);
+        return mysqli_insert_id($connection);
     }
 
     function getAllPlans($user_id){
@@ -210,4 +211,5 @@
         confirm_connection($connection);
         return mysqli_fetch_assoc($result);
     }
+
 ?>

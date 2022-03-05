@@ -4,7 +4,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="<?php echo $link_path; ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -52,11 +52,11 @@
                                 </nav>
                             </div> -->
                             <div class="sb-sidenav-menu-heading">Plans</div>
-                            <a class="nav-link" href="plans/create_plan.php">
+                            <a class="nav-link" href="<?php echo $link_path; ?>/plans/create_plan.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Create a plan
                             </a>
-                            <a class="nav-link" href="/plans/plans.php">
+                            <a class="nav-link" href="<?php echo $link_path; ?>/plans/plans.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Plans
                             </a>

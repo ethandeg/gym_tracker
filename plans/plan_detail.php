@@ -1,6 +1,6 @@
-<?php include "/includes/header.php"; ?>
-<?php include "/includes/navigation.php"; ?>
-<?php include "/includes/sidenav.php"; ?>
+<?php include "../includes/header.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/navigation.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/sidenav.php"; ?>
 
             <div id="layoutSidenav_content">
                 <!-- 3,500 Calories lost per pound -->
@@ -120,5 +120,5 @@
                     </div>
                 </main>
                 
-<?php include "/includes/footer.php"; ?>
-<script>"/scripts/add_workout.js"</script>
+<?php include PROJECT_ROOT_PATH . "./includes/footer.php"; ?>
+<script src="<?php echo $link_path; ?>/scripts/add_workout.js"></script>

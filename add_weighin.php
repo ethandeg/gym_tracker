@@ -9,6 +9,7 @@
                         $_POST['weighin_user_id'] = $user_id;
                         logWeighin($_POST);
                         updateColumn('users', ['user_weight'=> (int)$_POST['weighin_weight']], 'user_id', (int)$user_id);
+                        header("Location: $link_path/index.php");
                     }
                     
                     ?>

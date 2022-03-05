@@ -1,13 +1,14 @@
-<?php include "/includes/header.php"; ?>
-<?php include "/includes/navigation.php"; ?>
-<?php include "/includes/sidenav.php"; ?>
+<?php include "../includes/config.php";?>
+<?php include "../includes/header.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/navigation.php"; ?>
+<?php include PROJECT_ROOT_PATH . "./includes/sidenav.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
                     <?php 
                         if(isset($_POST['create_goal'])){
-                            print_r($_POST);
-                            insertWeightGoal($user_id,$_POST);
+                            $id = insertWeightGoal($user_id,$_POST);
+                            header("Location: $link_path/plans/plan_detail.php?" . "plan_id=" . $id);
                         }
                     ?>
                     <div class="container-fluid px-4">
@@ -37,5 +38,5 @@
                         </div>  
                     </form>
                     </div>
-                <"/includes/footer.php"; ?>
-<script>"/scripts/add_workout.js"</script>
+<?php include PROJECT_ROOT_PATH . "./includes/footer.php"; ?>
+<script src="<?php echo $link_path; ?>/scripts/add_workout.js"></script>
