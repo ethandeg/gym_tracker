@@ -1,8 +1,9 @@
+
 <?php include "./includes/header.php"; ?>
-<?php include PROJECT_ROOT_PATH . "/includes/navigation.php"; 
+<?php include PROJECT_ROOT_PATH . "/includes/navigation.php";
 //We grab user variables here, as well as authorization if user is logged in
 ?>
-<?php include "includes/sidenav.php"; 
+<?php include PROJECT_ROOT_PATH . "/includes/sidenav.php"; 
 ?>
 
 
