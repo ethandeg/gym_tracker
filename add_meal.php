@@ -9,6 +9,7 @@
                     $_POST['meal_datetime'] = $_POST['meal_date'] . " " . $_POST['meal_time'] . ":00";
                     $_POST['meal_user_id'] = $_SESSION['user_id'];
                     insertMeal($_POST);
+                    header("Location: $link_path/index.php");
                 }
                 
                 ?>
