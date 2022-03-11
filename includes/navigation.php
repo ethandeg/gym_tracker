@@ -1,5 +1,4 @@
 <?php if(!$_SESSION['user_id']){
-        $home_path = PROJECT_ROOT_PATH;
         header("location: ./register.php");
     } else {
         $user_id = (int)$_SESSION['user_id'];

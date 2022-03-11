@@ -1,4 +1,4 @@
-<?php include "includes/header.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/header.php"; ?>
 <?php
 if(isset($_POST['login'])){
     $user = authenticate($_POST['username'], $_POST['password']);
@@ -63,4 +63,4 @@ if(isset($_POST['login'])){
                 </footer>
             </div>
         </div>
-<?php include "includes/footer.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/footer.php"; ?>

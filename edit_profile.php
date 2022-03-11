@@ -1,6 +1,6 @@
-<?php include "includes/header.php"; ?>
-<?php include "includes/navigation.php"; ?>
-<?php include "includes/sidenav.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/header.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/navigation.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/sidenav.php"; ?>
 <?php $password = $user['password'];?>
             <div id="layoutSidenav_content">
                 <main>
@@ -93,5 +93,5 @@
                     </form>
                     </div>
                 </main>
-<?php include "includes/footer.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/footer.php"; ?>
 <script src="scripts/add_workout.js"></script>

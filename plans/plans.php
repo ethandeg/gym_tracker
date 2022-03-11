@@ -1,6 +1,6 @@
-<?php include "../includes/header.php"; ?>
-<?php include PROJECT_ROOT_PATH . "./includes/navigation.php"; ?>
-<?php include PROJECT_ROOT_PATH . "./includes/sidenav.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/header.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/navigation.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/sidenav.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -55,5 +55,5 @@
                             </div>
                         </div>
                 </main>
-<?php include PROJECT_ROOT_PATH . "./includes/footer.php"; ?>
+<?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/footer.php"; ?>
 <script>"<?php echo $link_path; ?>/scripts/add_workout.js"</script>

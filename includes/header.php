@@ -19,5 +19,5 @@
     </head>
     <body class="sb-nav-fixed">
 
-        <?php include PROJECT_ROOT_PATH . "./includes/db.php"; ?>
-        <?php include PROJECT_ROOT_PATH . "./functions.php";?>
+        <?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/includes/db.php"; ?>
+        <?php include $_SERVER['REDIRECT_GYM_TRACKER_ROOT'] . "/functions.php";?>
